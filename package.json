@@ -5,8 +5,12 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node index.ts",
-    "build": "tsc --project ./"
+    "mkdir": "mkdir build/src/client",
+    "copy": "cp -r src/client/* build/src/client",
+    "prebuild": "bash build.sh",
+    "build": "tsc --project ./ && yarn mkdir && yarn copy",
+    "start": "node build/index.js",
+    "dev": "ts-node index.ts"
   },
   "keywords": [],
   "author": "iobami",

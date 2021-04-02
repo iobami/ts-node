@@ -4,6 +4,12 @@
     "module": "commonjs",
     "rootDir": "./",
     "outDir": "./build",
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ]
+    },
     "esModuleInterop": true,
     "strict": true
   }
