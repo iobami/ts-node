@@ -5,6 +5,7 @@ import dotenvExpand from 'dotenv-expand';
 
 import { initDb } from './src/db';
 import { routes } from './src/services';
+import webpush from './src/services/webpush';
 
 const env = dotenv.config();
 dotenvExpand(env);
@@ -16,6 +17,7 @@ app.use(express.static(path.join(__dirname, './src/client')));
 app.use(express.json());
 
 initDb();
+webpush();
 routes(app);
 
 app.listen(PORT, () => {

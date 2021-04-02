@@ -1,9 +1,13 @@
 import { Router } from 'express';
-import { create } from './controllers';
+import { broadcast, create, remove } from './controllers';
 
 const router = Router();
 
-router.route('/subscribe')
-  .post(create);
+router.route('/')
+  .post(create)
+  .delete(remove);
+
+router.route('/broadcast')
+  .get(broadcast);
 
 export default router;

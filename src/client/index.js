@@ -21,6 +21,16 @@ const urlBase64ToUint8Array = (base64String) => {
   return outputArray;
 };
 
+const getSubscribedElement = document.getElementById('subscribed');
+const getUnsubscribedElement = document.getElementById('unsubscribed');
+
+const setSubscribeMessage = async () => {
+  const registration = await navigator.serviceWorker.ready;
+  const subscription = await registration.pushManager.getSubscription();
+  getSubscribedElement.setAttribute('style', `display: ${subscription ? 'block' : 'none'};`);
+  getUnsubscribedElement.setAttribute('style', `display: ${subscription ? 'none' : 'block'};`);
+};
+
 window.subscribe = async () => {
   if (!('serviceWorker' in navigator)) return;
 
@@ -32,9 +42,42 @@ window.subscribe = async () => {
     applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
   });
 
-  await fetch('/api/v1/subscriptions/subscribe', {
+  const { status } = fetch('/api/v1/subscriptions', {
     method: 'POST',
     body: JSON.stringify(subscription),
+    headers: {
+      'content-type': 'application/json',
+    },
+  });
+
+  if (status) {
+    setSubscribeMessage();
+  }
+};
+
+window.unsubscribe = async () => {
+  const registration = await navigator.serviceWorker.ready;
+  const subscription = await registration.pushManager.getSubscription();
+  if (!subscription) return;
+
+  const { endpoint } = subscription;
+
+  const { status } = await fetch(`/api/v1/subscriptions?endpoint=${endpoint}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+    },
+  });
+
+  if (status) {
+    await subscription.unsubscribe();
+    setSubscribeMessage();
+  }
+};
+
+window.broadcast = async () => {
+  await fetch('/api/v1/subscriptions/broadcast', {
+    method: 'GET',
     headers: {
       'content-type': 'application/json',
     },
