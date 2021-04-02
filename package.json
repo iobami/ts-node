@@ -5,13 +5,19 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node index.ts",
-    "build": "tsc --project ./"
+    "mkdir": "mkdir build/src && mkdir build/src/client",
+    "copy": "cp -r src/client/* build/src/client",
+    "prebuild": "bash build.sh",
+    "build": "tsc --project ./ && npm run mkdir && npm run copy",
+    "start": "node build/index.js",
+    "dev": "ts-node index.ts"
   },
   "keywords": [],
   "author": "iobami",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
