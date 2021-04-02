@@ -2,21 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Hello World</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Push Notifcation</title>
+
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <h1>Push notification center</h1>
-  <h3 id="subscribed">You are subscribed</h3>
-  <h3 id="unsubscribed">You are not subscribed</h3>
+  <header>
+    <h1>Push notification center</h1>
+  </header>
 
-  <hr>
+  <main>
+    <p>
+      Welcome to the push messaging by bams. The button below needs to be
+      fixed to support subscribing to push.
+    </p>
 
-  <button onclick="broadcast()">Send push notification</button>
+    <h3 id="subscribed">You are subscribed</h3>
+    <h3 id="unsubscribed">You are not subscribed</h3>
 
-  <hr>
+    <hr>
 
-  <button onclick="subscribe()">Subscribe</div>
-  <button onclick="unsubscribe()">Unsubscribe</button>
+    <button onclick="broadcast()" class="btn btn-primary">Send push notification</button>
+
+    <hr>
+
+    <button onclick="subscribe()" class="btn btn-success">Subscribe</div>
+    <button onclick="unsubscribe()" class="btn btn-danger">Unsubscribe</button>
+  </main>
 
   <script src="index.js"></script>
 </body>
