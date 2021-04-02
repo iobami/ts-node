@@ -21,5 +21,5 @@ webpush();
 routes(app);
 
 app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
+  console.log(`⚡️[server]: Server is running on PORT: ${PORT}`);
 });
