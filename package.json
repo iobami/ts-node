@@ -8,7 +8,7 @@
     "mkdir": "mkdir build/src/client",
     "copy": "cp -r src/client/* build/src/client",
     "prebuild": "bash build.sh",
-    "build": "tsc --project ./ && yarn mkdir && yarn copy",
+    "build": "tsc --project ./ && npm run mkdir && npm run copy",
     "start": "node build/index.js",
     "dev": "ts-node index.ts"
   },
