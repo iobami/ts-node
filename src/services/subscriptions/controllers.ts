@@ -47,7 +47,7 @@ export const remove = async (req: Request, res: Response, next: NextFunction): P
 
 export const broadcast = async ({}, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const notification = { title: 'Hey, this is a push notification!' };
+    const notification = { title: 'Hey, this is a push notification!', body: ' | Check your dms' };
 
     const subscriptions = await subscriptionRepository.read();
 
